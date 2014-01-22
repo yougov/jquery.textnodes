@@ -1,0 +1,26 @@
+{
+  "name": "textnodes",
+  "title": "jQuery.textNodes",
+  "description": "Get all descendent text nodes from the set of matched elements.",
+  "version": "0.1.0",
+  "homepage": "",
+  "author": {
+    "name": "Mark Florian",
+    "email": "mark.florian@yougov.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "''"
+  },
+  "bugs": "",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "/blob/master/LICENSE-MIT"
+    }
+  ],
+  "dependencies": {
+    "jquery": "*"
+  },
+  "keywords": []
+}
