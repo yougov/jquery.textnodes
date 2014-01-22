@@ -8,31 +8,28 @@
 
 (function($) {
 
-  // Collection method.
-  $.fn.textnodes = function() {
-    return this.each(function(i) {
-      // Do something awesome to each selected element.
-      $(this).html('awesome' + i);
+  var rNonWhiteSpace = /\S/;
+
+  function getChildTextNodes($el, list, includeWhiteSpace) {
+    $el.contents().each(function () {
+      console.log("called");
+      if (this.nodeType === 3) {
+        if (
+            includeWhiteSpace &&
+            rNonWhiteSpace.test(this.textContent || this.innerText)
+           ) {
+          list.push(this);
+        }
+      } else if (this.nodeType === 1) {
+        getChildTextNodes($(this), list);
+      }
     });
-  };
+  }
 
-  // Static method.
-  $.textnodes = function(options) {
-    // Override default options with passed-in options.
-    options = $.extend({}, $.textnodes.options, options);
-    // Return something awesome.
-    return 'awesome' + options.punctuation;
-  };
-
-  // Static method default options.
-  $.textnodes.options = {
-    punctuation: '.'
-  };
-
-  // Custom selector.
-  $.expr[':'].textnodes = function(elem) {
-    // Is this element awesome?
-    return $(elem).text().indexOf('awesome') !== -1;
+  $.fn.textNodes = function (includeWhiteSpace) {
+    var textNodes = [];
+    getChildTextNodes(this, textNodes, includeWhiteSpace);
+    return $(textNodes);
   };
 
 }(jQuery));
