@@ -19,9 +19,35 @@
 <body>
   <div id="qunit"></div>
   <div id="qunit-fixture">
-    <span>lame test markup</span>
-    <span>normal test markup</span>
-    <span>awesome test markup</span>
+
+    <div class="whitespaceOnly">
+      <span> </span>
+    </div>
+
+    <div class="deep">
+      non whitespace
+      <span>... and some more</span>
+      <!-- Here's a comment - note the text nodes either side! -->
+      <div>
+        <h1>A Thing<span>&trade;</span></h1>
+      </div>
+    </div>
+
+    <!-- Intentional copy of .deep -->
+    <div class="deep">
+      non whitespace
+      <span>... and some more</span>
+      <!-- Here's a comment - note the text nodes either side! -->
+      <div>
+        <h1>A<span>&nbsp;</span>Thing<span>&trade;</span></h1>
+      </div>
+    </div>
+
+    <div class="noTextNodes"><!--
+    --><label for="thing"></label><!--
+    --><input name="thing" type="radio"><!--
+ --></div>
+
   </div>
 </body>
 </html>
