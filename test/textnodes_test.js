@@ -20,43 +20,43 @@
       throws(block, [expected], [message])
   */
 
+  var TEXT_NODE = 3;
+
   module('jQuery#textnodes', {
     // This will run before each test in this module.
     setup: function() {
-      this.elems = $('#qunit-fixture').children();
+      var fixture = $('#qunit-fixture');
+      this.whitespaceOnly = fixture.find('.whitespaceOnly');
+      this.deep = fixture.find('.deep');
+      this.noTextNodes = fixture.find('.noTextNodes');
     }
   });
 
-  test('is chainable', function() {
+  test('gets only text nodes', function () {
     expect(1);
-    // Not a bad test to run on collection methods.
-    strictEqual(this.elems.textnodes(), this.elems, 'should be chainable');
-  });
 
-  test('is awesome', function() {
-    expect(1);
-    strictEqual(this.elems.textnodes().text(), 'awesome0awesome1awesome2', 'should be awesome');
-  });
+    var areAllTextNodes = true;
 
-  module('jQuery.textnodes');
+    this.allTextNodes.textnodes(true).each(function () {
+      if (this.nodeType !== TEXT_NODE) {
+        areAllTextNodes = false;
+      }
+    });
 
-  test('is awesome', function() {
-    expect(2);
-    strictEqual($.textnodes(), 'awesome.', 'should be awesome');
-    strictEqual($.textnodes({punctuation: '!'}), 'awesome!', 'should be thoroughly awesome');
-  });
+    ok(areAllTextNodes, 'should only return text nodes');
+  }
 
-  module(':textnodes selector', {
-    // This will run before each test in this module.
-    setup: function() {
-      this.elems = $('#qunit-fixture').children();
-    }
-  });
+  test('gets the right number of nodes', function() {
+    expect(6);
 
-  test('is awesome', function() {
-    expect(1);
-    // Use deepEqual & .get() when comparing jQuery objects.
-    deepEqual(this.elems.filter(':textnodes').get(), this.elems.last().get(), 'knows awesome when it sees it');
+    strictEqual(this.whitespaceOnly.textnodes(), 0, 'ignores whitespace-only text nodes by default');
+    strictEqual(this.whitespaceOnly.textnodes(true), 3, 'does not ignore whitespace-only text nodes if told to');
+
+    strictEqual(this.deep.textnodes(), 5, 'gets all descendent text nodes, except whitespace-only ones');
+    strictEqual(this.deep.textnodes(true), 7, 'gets all descendent text nodes, including whitespace-only ones if told to');
+
+    strictEqual(this.noTextNodes.textnodes(), 0, 'returns an empty jQuery object when there are no text nodes');
+    strictEqual(this.noTextNodes.textnodes(true), 0, 'returns an empty jQuery object when there are no text nodes, not even whitespace-only ones');
   });
 
 }(jQuery));
