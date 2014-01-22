@@ -28,8 +28,9 @@
 
   $.fn.textNodes = function (includeWhiteSpace) {
     var textNodes = [];
-    getChildTextNodes(this, textNodes, includeWhiteSpace);
-    return $(textNodes);
+    return this.each(function () {
+      getChildTextNodes($(this), textNodes, includeWhiteSpace);
+    });
   };
 
 }(jQuery));
