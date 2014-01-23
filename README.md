@@ -12,7 +12,7 @@ In your web page:
 
 ```html
 <script src="jquery.js"></script>
-<script src="dist/textnodes.min.js"></script>
+<script src="dist/jquery.textnodes.min.js"></script>
 <script>
 jQuery(function($) {
   $.awesome(); // "awesome"

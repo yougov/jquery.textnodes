@@ -1,6 +1,6 @@
 /*
- * textnodes
- * 
+ * jquery.textnodes
+ *
  *
  * Copyright (c) 2014 Mark Florian
  * Licensed under the MIT license.

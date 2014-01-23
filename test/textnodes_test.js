@@ -22,7 +22,7 @@
 
   var TEXT_NODE = 3;
 
-  module('jQuery#textnodes', {
+  module('jQuery#textNodes', {
     // This will run before each test in this module.
     setup: function() {
       var fixture = $('#qunit-fixture');

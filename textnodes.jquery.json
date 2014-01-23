@@ -1,5 +1,5 @@
 {
-  "name": "textnodes",
+  "name": "jquery.textnodes",
   "title": "jQuery.textNodes",
   "description": "Get all descendent text nodes from the set of matched elements.",
   "version": "0.1.0",
