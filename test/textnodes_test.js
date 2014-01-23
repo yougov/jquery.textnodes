@@ -51,18 +51,19 @@
     ok(areAllTextNodes, 'should only return text nodes');
   });
 
-  test('gets the right number of nodes', function() {
-    expect(7);
+  test('ignores whitespace-only', function() {
+    expect(3);
 
     strictEqual(this.whitespaceOnly.textNodes().length, 0, 'ignores whitespace-only text nodes by default');
-    strictEqual(this.whitespaceOnly.textNodes(true).length, 4, 'does not ignore whitespace-only text nodes if told to');
-
-    strictEqual(this.simpleSet.textNodes(true).length, 2, 'iterates correctly over a jQuery selection of more than one element');
-
     strictEqual(this.deep.textNodes().length, 9, 'gets all descendent text nodes, except whitespace-only ones');
-    strictEqual(this.deep.textNodes(true).length, 20, 'gets all descendent text nodes, including whitespace-only ones if told to');
-
     strictEqual(this.noTextNodes.textNodes().length, 0, 'returns an empty jQuery object when there are no text nodes');
+  });
+
+  test('includes whitespace-only', function () {
+    expect(3);
+
+    strictEqual(this.whitespaceOnly.textNodes(true).length, 4, 'does not ignore whitespace-only text nodes if told to');
+    strictEqual(this.deep.textNodes(true).length, 20, 'gets all descendent text nodes, including whitespace-only ones if told to');
     strictEqual(this.noTextNodes.textNodes(true).length, 0, 'returns an empty jQuery object when there are no text nodes, not even whitespace-only ones');
   });
 
