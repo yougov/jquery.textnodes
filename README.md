@@ -39,4 +39,4 @@ $('.else').textNodes(true);
 ```
 
 ## Release History
-_(Nothing yet)_
+ * v1.0.0 Initial release
