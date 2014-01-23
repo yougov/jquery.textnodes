@@ -8,7 +8,9 @@
 
 (function($) {
 
-  var rNonWhiteSpace = /\S/;
+  // Match anything that isn't whitespace or the non-breaking space,
+  // which IE < 9 does not consider whitespace.
+  var rNonWhiteSpace = /[^\s\u00a0]/;
 
   function getChildTextNodes($el, list, includeWhiteSpace) {
     $el.contents().each(function () {
