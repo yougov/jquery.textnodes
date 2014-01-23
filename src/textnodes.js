@@ -12,25 +12,26 @@
 
   function getChildTextNodes($el, list, includeWhiteSpace) {
     $el.contents().each(function () {
-      console.log("called");
       if (this.nodeType === 3) {
         if (
             includeWhiteSpace &&
-            rNonWhiteSpace.test(this.textContent || this.innerText)
+            !rNonWhiteSpace.test(this.textContent || this.innerText)
            ) {
           list.push(this);
         }
       } else if (this.nodeType === 1) {
-        getChildTextNodes($(this), list);
+        getChildTextNodes($(this), list, includeWhiteSpace);
       }
+      return list;
     });
   }
 
   $.fn.textNodes = function (includeWhiteSpace) {
     var textNodes = [];
-    return this.each(function () {
+    this.each(function () {
       getChildTextNodes($(this), textNodes, includeWhiteSpace);
     });
+    return $(textNodes);
   };
 
 }(jQuery));
