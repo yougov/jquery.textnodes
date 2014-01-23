@@ -14,8 +14,7 @@
     $el.contents().each(function () {
       var isNonWhiteSpace;
       if (this.nodeType === 3) {
-        isNonWhiteSpace = rNonWhiteSpace
-          .test(this.textContent || this.innerText);
+        isNonWhiteSpace = rNonWhiteSpace.test(this.nodeValue);
         if (isNonWhiteSpace || includeWhiteSpace) {
           list.push(this);
         }
