@@ -35,13 +35,17 @@
   test('gets only text nodes', function () {
     expect(1);
 
-    var areAllTextNodes = true;
+    var areAllTextNodes = false;
 
-    this.deep.textNodes(true).each(function () {
-      if (this.nodeType !== TEXT_NODE) {
+    var nodes = this.deep.textNodes(true);
+    for (var i = 0; i < nodes.length; i++) {
+      if (this.nodeType === TEXT_NODE) {
+        areAllTextNodes = true;
+      } else {
         areAllTextNodes = false;
+        break;
       }
-    });
+    }
 
     ok(areAllTextNodes, 'should only return text nodes');
   });
