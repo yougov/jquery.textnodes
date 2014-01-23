@@ -4,7 +4,8 @@ Get all descendent text nodes from the set of matched elements.
 
 Tested and working in IE6+*, Firefox 26 and Chrome 32.
 
-_Note_: IE < 9 does not correctly get whitespace-only text nodes. I don't know of any workaround.
+_Note_: IE6+ are fine with non-whitespace-only text nodes, but IE < 9 do not
+correctly get _whitespace-only_ text nodes. I don't know of any workaround.
 
 ## Getting Started
 Download the [production version][min] or the [development version][max].
@@ -26,13 +27,13 @@ jQuery(function($) {
 
 ## Examples
 Returns all descendent, non-whitespace-only text nodes from the matching
-set of elements:
+set of elements _(IE6+ and modern browsers)_:
 ```
 $('.something').textNodes();
 ```
 
 Returns all descendent text nodes, including whitespace-only ones**, from
-the matching set of elements _(Except in IE < 9, which sometimes pretends these don't exist.)_:
+the matching set of elements _(IE9+ and modern browsers)_:
 ```
 $('.else').textNodes(true);
 ```
