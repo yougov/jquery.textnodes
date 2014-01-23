@@ -12,11 +12,11 @@
 
   function getChildTextNodes($el, list, includeWhiteSpace) {
     $el.contents().each(function () {
+      var isNonWhiteSpace;
       if (this.nodeType === 3) {
-        if (
-            includeWhiteSpace &&
-            !rNonWhiteSpace.test(this.textContent || this.innerText)
-           ) {
+        isNonWhiteSpace = rNonWhiteSpace
+          .test(this.textContent || this.innerText);
+        if (isNonWhiteSpace || includeWhiteSpace) {
           list.push(this);
         }
       } else if (this.nodeType === 1) {
@@ -28,9 +28,7 @@
 
   $.fn.textNodes = function (includeWhiteSpace) {
     var textNodes = [];
-    this.each(function () {
-      getChildTextNodes($(this), textNodes, includeWhiteSpace);
-    });
+    getChildTextNodes(this, textNodes, includeWhiteSpace);
     return $(textNodes);
   };
 
